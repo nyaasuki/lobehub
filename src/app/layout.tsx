@@ -1,3 +1,4 @@
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type ReactNode, Suspense } from 'react';
 
@@ -12,7 +13,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         {children}
         <Suspense fallback={null}>
           <Analytics />
-          {inVercel && <SpeedInsights />}
+          {inVercel && (
+            <>
+              <SpeedInsights />
+              <VercelAnalytics />
+            </>
+          )}
         </Suspense>
       </body>
     </html>
